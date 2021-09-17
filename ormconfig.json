@@ -1,0 +1,9 @@
+{
+  "type": "postgres",
+  "host": "chunee.db.elephantsql.com",
+  "port": 5432,
+  "username": "yckaudpd",
+  "password": "sBvGsNIxY8Hj-qP-fk5bsvt4-CeFK1Rb",
+  "database": "yckaudpd",
+  "entities": ["dist/infra/postgres/entities/index.ts"]
+}

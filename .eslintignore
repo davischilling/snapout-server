@@ -1,0 +1,7 @@
+node_modules
+dist
+package.md
+terminal.md
+modules.md
+coverage
+.env
