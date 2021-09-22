@@ -2,6 +2,7 @@ import { Account } from '@/data/entities'
 import { AccountData } from '@/domain/models'
 import { AccountAttrs, AccountEntity as AccountRepoModel } from '@/infra/mongodb/entities'
 import { MongoDbRepository } from '@/infra/mongodb/repos'
+import { MongoDbRepoTypes } from '@/main/types/mongodb-repo'
 import { clearDatabase, closeDatabase, connect } from '@/tests/infra/mongodb/mocks'
 
 import MongoMemoryServer from 'mongodb-memory-server-core'
@@ -37,7 +38,7 @@ describe('MongoDbRepository', () => {
 
   beforeEach(async () => {
     await clearDatabase(mongoOrm.connection.collections)
-    sut = await MongoDbRepository.init('@/infra/mongodb/entities', 'account')
+    sut = await MongoDbRepository.init('@/infra/mongodb/entities', MongoDbRepoTypes.account)
   })
 
   describe('create', () => {

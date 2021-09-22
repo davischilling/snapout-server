@@ -15,17 +15,17 @@ export class MongoDbRepository implements Repository {
     try {
       const repo = (await import(`${path}/${entity}`)).default
       return new MongoDbRepository(repo)
-    } catch {
+    } catch (err) {
       throw new ServerError()
     }
   }
 
   docFormat (repo: DocumentDefinition<any>): any {
     const id = repo._id.toString()
-    const { _id, __v, ...newRepo } = repo._doc
+    const { _id, __v, ...updatedRepo } = repo._doc
     return {
       id,
-      ...newRepo
+      ...updatedRepo
     }
   }
 

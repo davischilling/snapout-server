@@ -175,7 +175,7 @@ describe('Account Routes', () => {
     const { status, body } = await request(app)
       .post('/api/create-admin-account')
       .set('Accept', 'application/json')
-      .set('secret', process.env.SECRET as string)
+      .set('secret', process.env.SECRET as string ?? 'secret')
       .send({ email: 'test@test.com' })
 
     expect(status).toBe(201)
@@ -192,7 +192,7 @@ describe('Account Routes', () => {
     const { status, body } = await request(app)
       .post('/api/sign-in-admin-account')
       .set('Accept', 'application/json')
-      .set('secret', process.env.SECRET as string)
+      .set('secret', process.env.SECRET as string ?? 'secret')
       .send({ email: 'test@test.com' })
 
     expect(status).toBe(200)

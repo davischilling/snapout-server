@@ -34,7 +34,7 @@ import {
 } from '@/main/validations'
 
 import { Router } from 'express'
-import { MiddlewareTypes } from '../types/middlewares'
+import { MiddlewareTypes } from '@/main/types/middlewares'
 
 export default async (router: Router): Promise<void> => {
   router.post(
