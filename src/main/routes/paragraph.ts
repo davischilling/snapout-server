@@ -23,7 +23,7 @@ import { Router } from 'express'
 export default async (router: Router): Promise<void> => {
   router.post(
     '/paragraphs',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(createParagraphSchema, createParagraphAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeCreateParagraphController()))
   router.get(

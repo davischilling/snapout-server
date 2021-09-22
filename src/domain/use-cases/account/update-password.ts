@@ -8,9 +8,9 @@ export namespace UpdateAccountPassword {
     repeat_password: string
   }
   type OutputData = {
-    name?: string
+    name: string
     email: string
-    phone?: string
+    phone: string
   }
   export type Output = { Account: OutputData } | Error
 }

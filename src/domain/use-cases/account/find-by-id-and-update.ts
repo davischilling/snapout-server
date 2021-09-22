@@ -3,13 +3,13 @@ export type FindAccountByIdAndUpdateService = (params: FindAccountByIdAndUpdate.
 export namespace FindAccountByIdAndUpdate {
   export type Input = {
     accountId: string
-    name?: string
-    phone?: string
+    name: string
+    phone: string
   }
   type OutputData = {
-    name?: string
+    name: string
     email: string
-    phone?: string
+    phone: string
   }
   export type Output = { Account: OutputData } | Error
 }

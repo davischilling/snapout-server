@@ -20,7 +20,7 @@ import {
   makeValidationMiddleware
 } from '@/main/factories/middlewares'
 import {
-  signUpSchema, signUpAllowedParams,
+  // signUpSchema, signUpAllowedParams,
   signInSchema, signInAllowedParams,
   currentAccountSchema, currentAccountAllowedParams,
   findByIdAndUpdateSchema, findByIdAndUpdateAllowedParams,
@@ -37,11 +37,11 @@ import { Router } from 'express'
 import { MiddlewareTypes } from '@/main/types/middlewares'
 
 export default async (router: Router): Promise<void> => {
-  router.post(
-    '/sign-up',
-    adaptMddlwr(makeValidationMiddleware(signUpSchema, signUpAllowedParams), MiddlewareTypes.validation),
-    adaptCtrl(await makeSignUpController())
-  )
+  // router.post(
+  //   '/sign-up',
+  //   adaptMddlwr(makeValidationMiddleware(signUpSchema, signUpAllowedParams), MiddlewareTypes.validation),
+  //   adaptCtrl(await makeSignUpController())
+  // )
   router.post(
     '/sign-in',
     adaptMddlwr(makeValidationMiddleware(signInSchema, signInAllowedParams), MiddlewareTypes.validation),

@@ -23,7 +23,7 @@ import { Router } from 'express'
 export default async (router: Router): Promise<void> => {
   router.post(
     '/events',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(createEventSchema, createEventAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeCreateEventController()))
   router.get(

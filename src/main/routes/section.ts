@@ -23,7 +23,7 @@ import { Router } from 'express'
 export default async (router: Router): Promise<void> => {
   router.post(
     '/sections',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(createSectionSchema, createSectionAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeCreateSectionController()))
   router.get(

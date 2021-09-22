@@ -30,8 +30,4 @@ export class Account {
     this.name = name
     this.phone = phone
   }
-
-  static update (account: Account, params: any): Account {
-    return new Account({ ...account, ...params })
-  }
 }
