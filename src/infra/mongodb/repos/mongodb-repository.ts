@@ -52,13 +52,12 @@ export class MongoDbRepository implements Repository {
     }
   }
 
-  async findById (id: string): Promise<any> {
+  async findById (id: string, schemaToFormat?: string[]): Promise<any> {
     const repo: any = await this.repo.findById(id)
     if (repo === null) {
       throw new NotFoundError()
-    } else {
-      return this.docFormat(repo as DocumentDefinition<any>)
     }
+    return this.docFormat(repo as DocumentDefinition<any>)
   }
 
   async findByIdAndUpdate (id: string, updatedObj: any): Promise<any> {

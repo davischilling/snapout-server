@@ -49,19 +49,19 @@ export default async (router: Router): Promise<void> => {
   )
   router.get(
     '/current-account',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(currentAccountSchema, currentAccountAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeCurrentAccountController())
   )
   router.patch(
     '/update-account',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findByIdAndUpdateSchema, findByIdAndUpdateAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindAccountByIdAndUpdateController())
   )
   router.patch(
     '/update-password',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(updatePasswordSchema, updatePasswordAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeUpdateAccountPasswordController())
   )
@@ -72,7 +72,7 @@ export default async (router: Router): Promise<void> => {
   )
   router.post(
     '/recover-password',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.recover), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.recover), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(recoverPasswordSchema, recoverPasswordAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeRecoverAccountPasswordController())
   )

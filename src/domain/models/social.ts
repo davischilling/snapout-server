@@ -1,5 +1,4 @@
 export type SocialData = {
-  id?: string
   socialType: SocialTypes
   socialUrl: string
 }

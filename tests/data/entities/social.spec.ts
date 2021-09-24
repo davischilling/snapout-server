@@ -20,12 +20,10 @@ describe('Social', () => {
 
   it('should update an social correctly', () => {
     sut = new Social(socialData)
-    sut.id = 'any_social_id'
 
     const updatedSocial = new Social({ ...sut, ...{ socialType: SocialTypes.instagram } })
 
     expect(updatedSocial).toEqual({
-      id: 'any_social_id',
       socialType: SocialTypes.instagram,
       socialUrl: 'any_socialUrl'
     })

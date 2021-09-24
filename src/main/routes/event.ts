@@ -28,22 +28,22 @@ export default async (router: Router): Promise<void> => {
     adaptCtrl(await makeCreateEventController()))
   router.get(
     '/events',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findEventSchema, findEventAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindEventsController()))
   router.get(
     '/events/:id',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findEventByIdSchema, findEventByIdAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindEventByIdController()))
   router.patch(
     '/events/:id',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findEventByIdAndUpdateSchema, findEventByIdAndUpdateAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindEventByIdAndUpdateController()))
   router.delete(
     '/events/:id',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findEventByIdAndDeleteSchema, findEventByIdAndDeleteAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindEventByIdAndDeleteController()))
 }
