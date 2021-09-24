@@ -1,4 +1,4 @@
-import { MemberPageInfoData, ParagraphData, SocialData } from "@/domain/models"
+import { MemberPageInfoData } from '@/domain/models'
 
 export type CreateMemberService = (params: CreateMember.Input) => Promise<CreateMember.Output>
 

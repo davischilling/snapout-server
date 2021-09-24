@@ -3,7 +3,7 @@ import { clearDatabase, closeDatabase, connect } from '@/tests/infra/mongodb/moc
 import { signUpSetup } from '@/tests/main/routes/setup'
 import { SectionEntity as SectionRepoModel, SectionAttrs } from '@/infra/mongodb/entities'
 import { Section } from '@/data/entities'
-import { SectionData } from '@/domain/models'
+import { RoleType, SectionData } from '@/domain/models'
 
 import MongoMemoryServer from 'mongodb-memory-server-core'
 import { Mongoose } from 'mongoose'
@@ -49,10 +49,13 @@ describe('Section Routes', () => {
   })
 
   it('POST /api/sections - should return 201 with the new section ID', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const { status, body } = await request(app)
       .post('/api/sections')
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
       .send(section)
 
     expect(status).toBe(201)

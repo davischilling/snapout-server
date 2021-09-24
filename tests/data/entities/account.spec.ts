@@ -27,7 +27,7 @@ describe('Account', () => {
     sut = new Account(accountData)
     sut.id = 'any_account_id'
 
-    const updatedAccount = new Account({ ...sut, ...{ password: 'new_password' }})
+    const updatedAccount = new Account({ ...sut, ...{ password: 'new_password' } })
     sut.password = 'new_password'
 
     expect(updatedAccount).toEqual(sut)

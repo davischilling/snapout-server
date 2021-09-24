@@ -6,5 +6,5 @@ export const findParagraphByIdAndUpdateAllowedParams = [
 
 export const findParagraphByIdAndUpdateSchema = Joi.object({
   id: Joi.string().required(),
-  paragraph: Joi.string().required(),
+  paragraph: Joi.string().required()
 })

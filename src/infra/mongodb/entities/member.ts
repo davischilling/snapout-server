@@ -33,14 +33,7 @@ const memberSchema = new mongoose.Schema({
   memberUrlPage: { type: String, required: true },
   memberPageInfo: memberPageInfoSchema
 }, {
-  timestamps: true,
-  // toJSON: {
-  //   transform (doc, ret) {
-  //     ret.id = ret._id
-  //     delete ret._id
-  //     delete ret.__v
-  //   }
-  // }
+  timestamps: true
 })
 
 memberSchema.statics.build = (attrs: MemberAttrs) => {

@@ -1,4 +1,4 @@
-import { MemberPageInfoData } from "./member-page-info";
+import { MemberPageInfoData } from './member-page-info'
 
 export type MemberData = {
   id?: string

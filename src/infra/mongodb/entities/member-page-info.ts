@@ -31,14 +31,7 @@ const memberPageInfoSchema = new mongoose.Schema({
   socialsPhrase: { type: String, required: true },
   socials: [socialSchema]
 }, {
-  timestamps: true,
-  // toJSON: {
-  //   transform(doc, ret) {
-  //     ret.id = ret._id
-  //     delete ret._id
-  //     delete ret.__v
-  //   }
-  // }
+  timestamps: true
 })
 
 memberPageInfoSchema.statics.build = (attrs: MemberPageInfoAttrs) => {

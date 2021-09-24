@@ -10,13 +10,15 @@ describe('FindAccountByIdAndUpdateController', () => {
 
   beforeAll(() => {
     input = {
-      accountId: 'any_id'
+      accountId: 'any_id',
+      name: 'another_name',
+      phone: 'another_phone'
     }
     findAccountByIdAndUpdateService = jest.fn()
     findAccountByIdAndUpdateService.mockResolvedValue({
-      name: 'any_name',
       email: 'any_email',
-      phone: 'any_phone'
+      name: 'another_name',
+      phone: 'another_phone'
     })
   })
 
@@ -48,9 +50,9 @@ describe('FindAccountByIdAndUpdateController', () => {
     expect(httpResponse).toEqual({
       statusCode: 200,
       data: {
-        name: 'any_name',
         email: 'any_email',
-        phone: 'any_phone'
+        name: 'another_name',
+        phone: 'another_phone'
       }
     })
   })

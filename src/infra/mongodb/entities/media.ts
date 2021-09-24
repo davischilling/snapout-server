@@ -18,14 +18,7 @@ const mediaSchema = new mongoose.Schema({
   youtubeUrlId: { type: String, required: true },
   videoTitle: { type: String, required: true }
 }, {
-  timestamps: true,
-  // toJSON: {
-  //   transform(doc, ret) {
-  //     ret.id = ret._id
-  //     delete ret._id
-  //     delete ret.__v
-  //   }
-  // }
+  timestamps: true
 })
 
 mediaSchema.statics.build = (attrs: MediaAttrs) => {

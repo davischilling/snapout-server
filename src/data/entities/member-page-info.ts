@@ -1,11 +1,11 @@
 import { MemberPageInfoData, ParagraphData, SocialData } from '@/domain/models'
 
 export class MemberPageInfo {
-  pageTitlePicture: string;
-  title: string;
-  paragraphs: ParagraphData[];
-  socialsPhrase: string;
-  socials: SocialData[];
+  pageTitlePicture: string
+  title: string
+  paragraphs: ParagraphData[]
+  socialsPhrase: string
+  socials: SocialData[]
 
   constructor (
     MemberPageInfoData: MemberPageInfoData

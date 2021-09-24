@@ -18,16 +18,9 @@ export interface SocialModel extends mongoose.Model<SocialDoc> {
 
 const socialSchema = new mongoose.Schema({
   socialType: { type: String, enum: [SocialTypes.facebook, SocialTypes.instagram], required: true },
-  socialUrl: { type: String, required: true },
+  socialUrl: { type: String, required: true }
 }, {
-  timestamps: true,
-  // toJSON: {
-  //   transform(doc, ret) {
-  //     ret.id = ret._id
-  //     delete ret._id
-  //     delete ret.__v
-  //   }
-  // }
+  timestamps: true
 })
 
 socialSchema.statics.build = (attrs: SocialAttrs) => {

@@ -3,7 +3,7 @@ import { clearDatabase, closeDatabase, connect } from '@/tests/infra/mongodb/moc
 import { signUpSetup } from '@/tests/main/routes/setup'
 import { ParagraphEntity as ParagraphRepoModel, ParagraphAttrs } from '@/infra/mongodb/entities'
 import { Paragraph } from '@/data/entities'
-import { ParagraphData } from '@/domain/models'
+import { ParagraphData, RoleType } from '@/domain/models'
 
 import MongoMemoryServer from 'mongodb-memory-server-core'
 import { Mongoose } from 'mongoose'
@@ -47,10 +47,13 @@ describe('Paragraph Routes', () => {
   })
 
   it('POST /api/paragraphs - should return 201 with the new paragraph ID', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const { status, body } = await request(app)
       .post('/api/paragraphs')
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
       .send(paragraph)
 
     expect(status).toBe(201)

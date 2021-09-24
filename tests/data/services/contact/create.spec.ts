@@ -8,47 +8,46 @@ import { mocked } from 'ts-jest/utils'
 jest.mock('@/data/entities/contact')
 
 describe('CreateContactService', () => {
-    let contactAccountRepo: MockProxy<ContactDbRepo>
-    const createContactInput: CreateContact.ContactInputs = {
-      message: 'any_message',
-      email: 'any_email',
-      eventManager: 'any_eventManager',
-      phone: 'any_phone'
-    }
-    let sut: CreateContactService
+  let contactAccountRepo: MockProxy<ContactDbRepo>
+  const createContactInput: CreateContact.ContactInputs = {
+    message: 'any_message',
+    email: 'any_email',
+    eventManager: 'any_eventManager',
+    phone: 'any_phone'
+  }
+  let sut: CreateContactService
 
-    beforeAll(() => {
-        contactAccountRepo = mock()
-        contactAccountRepo.find.mockResolvedValue({ items: 0, data: [] })
-        contactAccountRepo.create.mockResolvedValue('contact_id')
-    })
+  beforeAll(() => {
+    contactAccountRepo = mock()
+    contactAccountRepo.find.mockResolvedValue({ items: 0, data: [] })
+    contactAccountRepo.create.mockResolvedValue('contact_id')
+  })
 
-    beforeEach(() => {
-        sut = setupCreateContact(contactAccountRepo)
-    })
+  beforeEach(() => {
+    sut = setupCreateContact(contactAccountRepo)
+  })
 
+  it('should call ContactRepo.create with Contact entity', async () => {
+    const ContactStub = jest.fn().mockImplementation(() => ({ any: 'any' }))
+    mocked(Contact).mockImplementation(ContactStub)
 
-    it('should call ContactRepo.create with Contact entity', async () => {
-        const ContactStub = jest.fn().mockImplementation(() => ({ any: 'any' }))
-        mocked(Contact).mockImplementation(ContactStub)
+    await sut(createContactInput)
 
-        await sut(createContactInput)
+    expect(contactAccountRepo.create).toHaveBeenCalledWith({ any: 'any' })
+    expect(contactAccountRepo.create).toHaveBeenCalledTimes(1)
+  })
 
-        expect(contactAccountRepo.create).toHaveBeenCalledWith({ any: 'any' })
-        expect(contactAccountRepo.create).toHaveBeenCalledTimes(1)
-    })
+  it('should return an id on success', async () => {
+    const contactCreateResult = await sut(createContactInput)
 
-    it('should return an id on success', async () => {
-        const contactCreateResult = await sut(createContactInput)
+    expect(contactCreateResult).toEqual({ id: 'contact_id' })
+  })
 
-        expect(contactCreateResult).toEqual({ id: 'contact_id' })
-    })
+  it('should rethrow if ContactAccountRepo.create throws', async () => {
+    contactAccountRepo.create.mockRejectedValueOnce(new Error('repo_error'))
 
-    it('should rethrow if ContactAccountRepo.create throws', async () => {
-        contactAccountRepo.create.mockRejectedValueOnce(new Error('repo_error'))
+    const promise = sut(createContactInput)
 
-        const promise = sut(createContactInput)
-
-        await expect(promise).rejects.toThrow(new Error('repo_error'))
-    })
+    await expect(promise).rejects.toThrow(new Error('repo_error'))
+  })
 })

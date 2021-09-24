@@ -5,5 +5,5 @@ export const createParagraphAllowedParams = [
 ]
 
 export const createParagraphSchema = Joi.object({
-  paragraph: Joi.string().required(),
+  paragraph: Joi.string().required()
 })

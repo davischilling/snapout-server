@@ -21,10 +21,12 @@ export class MongoDbRepository implements Repository {
   }
 
   docFormat (repo: DocumentDefinition<any>): any {
-    const id = repo._id.toString()
     const { _id, __v, ...updatedRepo } = repo._doc
+    const id = _id.toString()
+    const version = __v
     return {
       id,
+      version,
       ...updatedRepo
     }
   }

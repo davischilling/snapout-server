@@ -14,7 +14,6 @@ describe('FindMemberByIdAndUpdateService', () => {
   let memberData: MemberData
   let memberUpdateInputs: FindMemberByIdAndUpdate.Input
   let memberAccountRepo: MockProxy<MemberDbRepo>
-  let mockUpdatedMember: MemberData
   let sut: FindMemberByIdAndUpdateService
 
   beforeAll(() => {

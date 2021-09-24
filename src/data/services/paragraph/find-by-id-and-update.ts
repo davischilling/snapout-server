@@ -1,9 +1,9 @@
 import { FindParagraphByIdAndUpdateService } from '@/domain/use-cases'
 import { Repository as ParagraphDbRepo } from '@/data/contracts/repos'
-import {Paragraph } from '@/data/entities'
+import { Paragraph } from '@/data/entities'
 
 type setup = (
- paragraphRepo: ParagraphDbRepo,
+  paragraphRepo: ParagraphDbRepo,
 ) => FindParagraphByIdAndUpdateService
 
 export const setupFindParagraphByIdAndUpdate: setup = (paragraphRepo) => async params => {

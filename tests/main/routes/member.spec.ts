@@ -3,7 +3,7 @@ import { clearDatabase, closeDatabase, connect } from '@/tests/infra/mongodb/moc
 import { signUpSetup } from '@/tests/main/routes/setup'
 import { MemberEntity as MemberRepoModel, MemberAttrs } from '@/infra/mongodb/entities'
 import { Member } from '@/data/entities'
-import { MemberData, SocialTypes } from '@/domain/models'
+import { MemberData, RoleType, SocialTypes } from '@/domain/models'
 
 import MongoMemoryServer from 'mongodb-memory-server-core'
 import { Mongoose } from 'mongoose'
@@ -63,10 +63,13 @@ describe('Member Routes', () => {
   })
 
   it('POST /api/members - should return 201 with the new member ID', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const { status, body } = await request(app)
       .post('/api/members')
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
       .send(member)
 
     expect(status).toBe(201)

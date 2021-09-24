@@ -3,13 +3,13 @@ import { created, HttpResponse, unauthorized } from '@/application/helpers'
 import { CreateSection, CreateSectionService } from '@/domain/use-cases'
 
 export class CreateSectionController extends Controller {
-  constructor(
+  constructor (
     private readonly createSection: CreateSectionService
   ) {
     super()
   }
 
-  async perform(params: CreateSection.Input): Promise<HttpResponse<CreateSection.Output>> {
+  async perform (params: CreateSection.Input): Promise<HttpResponse<CreateSection.Output>> {
     try {
       const id = await this.createSection(params)
       return created(id)

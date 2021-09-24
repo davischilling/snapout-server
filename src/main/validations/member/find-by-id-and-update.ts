@@ -43,6 +43,6 @@ export const findMemberByIdAndUpdateSchema = Joi.object({
           SocialTypes.instagram).required(),
         socialUrl: Joi.string().required()
       })
-    ),
+    )
   }).required()
 })

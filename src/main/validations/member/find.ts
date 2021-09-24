@@ -41,6 +41,6 @@ export const findMemberSchema = Joi.object({
           SocialTypes.instagram),
         socialUrl: Joi.string()
       })
-    ),
+    )
   })
 })

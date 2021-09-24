@@ -7,5 +7,5 @@ export const createSectionAllowedParams = [
 export const createSectionSchema = Joi.object({
   menuName: Joi.string().required(),
   entityName: Joi.string().required(),
-  sectionTitle: Joi.string().required(),
+  sectionTitle: Joi.string().required()
 })

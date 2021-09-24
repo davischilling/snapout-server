@@ -3,7 +3,7 @@ import { clearDatabase, closeDatabase, connect } from '@/tests/infra/mongodb/moc
 import { signUpSetup } from '@/tests/main/routes/setup'
 import { ContactEntity as ContactRepoModel, ContactAttrs } from '@/infra/mongodb/entities'
 import { Contact } from '@/data/entities'
-import { ContactData } from '@/domain/models'
+import { ContactData, RoleType } from '@/domain/models'
 
 import MongoMemoryServer from 'mongodb-memory-server-core'
 import { Mongoose } from 'mongoose'
@@ -50,10 +50,13 @@ describe('Contact Routes', () => {
   })
 
   it('POST /api/contacts - should return 201 with the new contact ID', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const { status, body } = await request(app)
       .post('/api/contacts')
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
       .send(contact)
 
     expect(status).toBe(201)

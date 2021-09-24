@@ -87,11 +87,8 @@ describe('Account Routes', () => {
       })
 
     expect(status).toBe(200)
-    expect(body).toEqual({
-      id,
-      email: 'test@test.com',
-      name: 'Davi Batista Schilling'
-    })
+    expect(body.id).toBe(id)
+    expect(body.name).toBe('Davi Batista Schilling')
   })
 
   it('PATCH /api/update-password - should return 200 with the new user ID', async () => {

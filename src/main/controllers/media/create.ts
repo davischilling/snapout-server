@@ -3,13 +3,13 @@ import { created, HttpResponse, unauthorized } from '@/application/helpers'
 import { CreateMedia, CreateMediaService } from '@/domain/use-cases'
 
 export class CreateMediaController extends Controller {
-  constructor(
+  constructor (
     private readonly createMedia: CreateMediaService
   ) {
     super()
   }
 
-  async perform(params: CreateMedia.Input): Promise<HttpResponse<CreateMedia.Output>> {
+  async perform (params: CreateMedia.Input): Promise<HttpResponse<CreateMedia.Output>> {
     try {
       const id = await this.createMedia(params)
       return created(id)

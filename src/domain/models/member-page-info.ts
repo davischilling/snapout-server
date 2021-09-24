@@ -1,4 +1,4 @@
-import { ParagraphData, SocialData } from "@/domain/models"
+import { ParagraphData, SocialData } from '@/domain/models'
 
 export type MemberPageInfoData = {
   pageTitlePicture: string

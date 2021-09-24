@@ -1,4 +1,4 @@
-import { SocialTypes } from '@/domain/models';
+import { SocialTypes } from '@/domain/models'
 
 import Joi from 'joi'
 
@@ -41,6 +41,6 @@ export const createMemberSchema = Joi.object({
           SocialTypes.instagram).required(),
         socialUrl: Joi.string().required()
       })
-    ),
+    )
   }).required()
 })

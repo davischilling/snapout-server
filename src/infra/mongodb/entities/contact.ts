@@ -24,14 +24,7 @@ const contactSchema = new mongoose.Schema({
   eventManager: { type: String, required: true },
   phone: { type: String, required: true }
 }, {
-  timestamps: true,
-  // toJSON: {
-  //   transform(doc, ret) {
-  //     ret.id = ret._id
-  //     delete ret._id
-  //     delete ret.__v
-  //   }
-  // }
+  timestamps: true
 })
 
 contactSchema.statics.build = (attrs: ContactAttrs) => {

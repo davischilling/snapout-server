@@ -3,13 +3,13 @@ import { created, HttpResponse, unauthorized } from '@/application/helpers'
 import { CreateEvent, CreateEventService } from '@/domain/use-cases'
 
 export class CreateEventController extends Controller {
-  constructor(
+  constructor (
     private readonly createEvent: CreateEventService
   ) {
     super()
   }
 
-  async perform(params: CreateEvent.Input): Promise<HttpResponse<CreateEvent.Output>> {
+  async perform (params: CreateEvent.Input): Promise<HttpResponse<CreateEvent.Output>> {
     try {
       const id = await this.createEvent(params)
       return created(id)

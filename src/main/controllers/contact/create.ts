@@ -20,6 +20,4 @@ export class CreateContactController extends Controller {
       return unauthorized()
     }
   }
-
-
 }

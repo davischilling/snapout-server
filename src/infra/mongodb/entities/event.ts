@@ -24,14 +24,7 @@ const eventSchema = new mongoose.Schema({
   city: { type: String, required: true },
   local: { type: String, required: true }
 }, {
-  timestamps: true,
-  // toJSON: {
-  //   transform(doc, ret) {
-  //     ret.id = ret._id
-  //     delete ret._id
-  //     delete ret.__v
-  //   }
-  // }
+  timestamps: true
 })
 
 eventSchema.statics.build = (attrs: EventAttrs) => {

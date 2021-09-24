@@ -10,17 +10,17 @@ export namespace FindMembers {
     alt?: string
     memberUrlPage?: string
     memberPageInfo?: {
-      pageTitlePicture?: string;
-      title?: string;
+      pageTitlePicture?: string
+      title?: string
       paragraphs?: [{
-        paragraph: string;
-      }];
-      socialsPhrase?: string;
+        paragraph: string
+      }]
+      socialsPhrase?: string
       socials?: [{
-        socialType?: SocialTypes;
-        socialUrl?: string;
-    }];
-  }
+        socialType?: SocialTypes
+        socialUrl?: string
+      }]
+    }
   }
   export type Output = { items: number, data: MemberData[] } | Error
 }

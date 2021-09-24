@@ -3,7 +3,7 @@ import { clearDatabase, closeDatabase, connect } from '@/tests/infra/mongodb/moc
 import { signUpSetup } from '@/tests/main/routes/setup'
 import { MediaEntity as MediaRepoModel, MediaAttrs } from '@/infra/mongodb/entities'
 import { Media } from '@/data/entities'
-import { MediaData } from '@/domain/models'
+import { MediaData, RoleType } from '@/domain/models'
 
 import MongoMemoryServer from 'mongodb-memory-server-core'
 import { Mongoose } from 'mongoose'
@@ -48,10 +48,13 @@ describe('Media Routes', () => {
   })
 
   it('POST /api/medias - should return 201 with the new media ID', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const { status, body } = await request(app)
       .post('/api/medias')
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
       .send(media)
 
     expect(status).toBe(201)

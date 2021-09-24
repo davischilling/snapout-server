@@ -9,8 +9,8 @@ type setup = (
 export const setupCreateMember: setup = (memberRepo) => async (params) => {
   const { memberPageInfo: memberPageInfoParams, ...member } = params
   const { paragraphs, socials, ...memberPageInfo } = memberPageInfoParams
-  let paragraphEntities = []
-  let socialEntities = []
+  const paragraphEntities = []
+  const socialEntities = []
   for (const paragraph of paragraphs) {
     paragraphEntities.push(new Paragraph(paragraph))
   }

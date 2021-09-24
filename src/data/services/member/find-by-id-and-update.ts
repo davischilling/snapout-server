@@ -1,8 +1,6 @@
 import { Repository as MemberDbRepo } from '@/data/contracts/repos'
 import { Member, MemberPageInfo, Paragraph, Social } from '@/data/entities'
-import { MemberPageInfoData } from '@/domain/models'
-import { FindMemberByIdAndUpdate, FindMemberByIdAndUpdateService } from '@/domain/use-cases'
-import { idText } from 'typescript'
+import { FindMemberByIdAndUpdateService } from '@/domain/use-cases'
 
 type setup = (
   memberRepo: MemberDbRepo,
@@ -12,8 +10,8 @@ export const setupFindMemberByIdAndUpdate: setup = (memberRepo) => async params 
   const member: Member = await memberRepo.findById(params.id)
   const { memberPageInfo: memberPageInfoParams, ...updatedMemberParams } = params
   const { paragraphs, socials, ...memberPageInfo } = memberPageInfoParams
-  let paragraphEntities = []
-  let socialEntities = []
+  const paragraphEntities = []
+  const socialEntities = []
   for (const paragraph of paragraphs) {
     paragraphEntities.push(new Paragraph(paragraph))
   }
@@ -25,6 +23,6 @@ export const setupFindMemberByIdAndUpdate: setup = (memberRepo) => async params 
     paragraphs: paragraphEntities,
     socials: socialEntities
   })
-  const updatedMember = new Member({ ...updatedMemberParams, memberPageInfo: updatedMemberPageInfo })
+  const updatedMember = new Member({ ...member, ...updatedMemberParams, memberPageInfo: updatedMemberPageInfo })
   return await memberRepo.findByIdAndUpdate(params.id, updatedMember)
 }
