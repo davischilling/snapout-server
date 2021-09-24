@@ -1,6 +1,6 @@
 import { addAlias } from 'module-alias'
 import { resolve } from 'path'
 
-addAlias('@', resolve(process.env.TS_NODE_DEV === undefined ? 'dist' : 'src'))
+addAlias('@', resolve(process.env.NODE_ENV === 'production' ? 'dist' : 'src'))
 
 /* Importar este arquivo em (@/main/api/index.ts) */

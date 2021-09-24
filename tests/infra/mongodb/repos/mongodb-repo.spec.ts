@@ -1,6 +1,6 @@
-import { MongoDbRepository } from '@/infra/mongodb/repos'
 import { NotFoundError, ServerError } from '@/application/errors'
-import { clearDatabase, closeDatabase, connect, RepoDoc } from '@/tests/infra/mongodb/mocks'
+import { MongoDbRepository, RepoDoc } from '@/infra/mongodb/repos'
+import { clearDatabase, closeDatabase, connect } from '@/tests/infra/mongodb/mocks'
 import Repo from '@/tests/infra/mongodb/mocks/repo'
 
 import MongoMemoryServer from 'mongodb-memory-server-core'
@@ -41,7 +41,7 @@ describe('MongoDbRepository', () => {
     })
 
     it('should throw a server error if the entity import returns undefined', async () => {
-      const promise = MongoDbRepository.init('@/tests/infra/mongodb/mocks', 'invalid_repo')
+      const promise = MongoDbRepository.init('@/tests/infra/mongodb', 'invalid_repo')
 
       await expect(promise).rejects.toThrow(new ServerError())
     })

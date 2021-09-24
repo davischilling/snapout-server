@@ -1,16 +1,6 @@
+import { RepoAttrs, RepoDoc, RepoModel } from '@/infra/mongodb/repos'
+
 import mongoose, { Schema } from 'mongoose'
-
-type RepoAttrs = {
-  data: any
-}
-
-export interface RepoDoc extends mongoose.Document {
-  data: any
-}
-
-export interface RepoModel extends mongoose.Model<RepoDoc> {
-  build: (attrs: RepoAttrs) => RepoDoc
-}
 
 const repoSchema = new mongoose.Schema({
   data: {

@@ -1,8 +1,19 @@
 import { Repository } from '@/data/contracts/repos/repository'
 import { NotFoundError, ServerError } from '@/application/errors'
-import { RepoDoc, RepoModel } from '@/tests/infra/mongodb/mocks'
 
 import mongoose, { DocumentDefinition } from 'mongoose'
+
+export type RepoAttrs = {
+  data: any
+}
+
+export interface RepoDoc extends mongoose.Document {
+  data: any
+}
+
+export interface RepoModel extends mongoose.Model<RepoDoc> {
+  build: (attrs: RepoAttrs) => RepoDoc
+}
 
 export class MongoDbRepository implements Repository {
   doc: RepoDoc | undefined
