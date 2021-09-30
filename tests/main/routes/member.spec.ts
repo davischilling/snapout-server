@@ -140,12 +140,15 @@ describe('Member Routes', () => {
   })
 
   it('DELETE /api/members/:id - should return 200 with updated member', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const memberId1 = await makeNewMember(member)
 
     const { status, body } = await request(app)
       .delete(`/api/members/${memberId1}`)
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
 
     expect(status).toBe(200)
     expect(body.id).toBe(memberId1)

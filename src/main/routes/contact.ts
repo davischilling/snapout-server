@@ -28,12 +28,12 @@ export default async (router: Router): Promise<void> => {
     adaptCtrl(await makeCreateContactController()))
   router.get(
     '/contacts',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
+    // adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findContactSchema, findContactAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindContactsController()))
   router.get(
     '/contacts/:id',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
+    // adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findContactByIdSchema, findContactByIdAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindContactByIdController()))
   router.patch(
@@ -43,7 +43,7 @@ export default async (router: Router): Promise<void> => {
     adaptCtrl(await makeFindContactByIdAndUpdateController()))
   router.delete(
     '/contacts/:id',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findContactByIdAndDeleteSchema, findContactByIdAndDeleteAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindContactByIdAndDeleteController()))
 }

@@ -28,12 +28,12 @@ export default async (router: Router): Promise<void> => {
     adaptCtrl(await makeCreateSectionController()))
   router.get(
     '/sections',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
+    // adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findSectionSchema, findSectionAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindSectionsController()))
   router.get(
     '/sections/:id',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
+    // adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findSectionByIdSchema, findSectionByIdAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindSectionByIdController()))
   router.patch(
@@ -43,7 +43,7 @@ export default async (router: Router): Promise<void> => {
     adaptCtrl(await makeFindSectionByIdAndUpdateController()))
   router.delete(
     '/sections/:id',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findSectionByIdAndDeleteSchema, findSectionByIdAndDeleteAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindSectionByIdAndDeleteController()))
 }

@@ -111,12 +111,15 @@ describe('Contact Routes', () => {
   })
 
   it('DELETE /api/contacts/:id - should return 200 with updated contact', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const contactId1 = await makeNewContact(contact)
 
     const { status, body } = await request(app)
       .delete(`/api/contacts/${contactId1}`)
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
 
     expect(status).toBe(200)
     expect(body.id).toBe(contactId1)

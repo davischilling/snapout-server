@@ -28,12 +28,12 @@ export default async (router: Router): Promise<void> => {
     adaptCtrl(await makeCreateMediaController()))
   router.get(
     '/medias',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
+    // adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findMediaSchema, findMediaAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindMediasController()))
   router.get(
     '/medias/:id',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
+    // adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findMediaByIdSchema, findMediaByIdAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindMediaByIdController()))
   router.patch(
@@ -43,7 +43,7 @@ export default async (router: Router): Promise<void> => {
     adaptCtrl(await makeFindMediaByIdAndUpdateController()))
   router.delete(
     '/medias/:id',
-    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.operator, RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
+    adaptMddlwr(await makeOperatorAuthenticationMiddleware([RoleType.admin], AccessTokenTypes.access), MiddlewareTypes.auth),
     adaptMddlwr(makeValidationMiddleware(findMediaByIdAndDeleteSchema, findMediaByIdAndDeleteAllowedParams), MiddlewareTypes.validation),
     adaptCtrl(await makeFindMediaByIdAndDeleteController()))
 }

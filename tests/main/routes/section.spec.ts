@@ -109,12 +109,15 @@ describe('Section Routes', () => {
   })
 
   it('DELETE /api/sections/:id - should return 200 with updated section', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const sectionId1 = await makeNewSection(section)
 
     const { status, body } = await request(app)
       .delete(`/api/sections/${sectionId1}`)
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
 
     expect(status).toBe(200)
     expect(body.id).toBe(sectionId1)

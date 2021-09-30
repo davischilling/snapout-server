@@ -111,12 +111,15 @@ describe('Event Routes', () => {
   })
 
   it('DELETE /api/events/:id - should return 200 with updated event', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const eventId1 = await makeNewEvent(event)
 
     const { status, body } = await request(app)
       .delete(`/api/events/${eventId1}`)
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
 
     expect(status).toBe(200)
     expect(body.id).toBe(eventId1)

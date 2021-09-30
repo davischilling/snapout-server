@@ -105,12 +105,15 @@ describe('Paragraph Routes', () => {
   })
 
   it('DELETE /api/paragraphs/:id - should return 200 with updated paragraph', async () => {
+    const { accessToken: adminToken } = await signUpSetup({
+      email: 'test@test.com', password: '1234', role: RoleType.admin
+    })
     const paragraphId1 = await makeNewParagraph(paragraph)
 
     const { status, body } = await request(app)
       .delete(`/api/paragraphs/${paragraphId1}`)
       .set('Accept', 'application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', adminToken)
 
     expect(status).toBe(200)
     expect(body.id).toBe(paragraphId1)
